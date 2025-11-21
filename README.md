@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Version](https://img.shields.io/badge/version-2.0-green.svg)](https://github.com/Toowiredd/ReadAid.ai)
 
 > Making the web more accessible, one page at a time.
 
@@ -9,6 +10,7 @@ ReadAid.ai is an AI-powered accessibility tool that transforms web content into 
 
 ## ✨ Features
 
+### Core Features
 - 🔍 **Intelligent Web Search**: Powered by Tavily AI search for accurate, up-to-date information
 - 🤖 **AI-Powered Content Generation**: Uses OpenAI GPT models to create clear, accessible content
 - 🎨 **Accessibility-Optimized Formatting**: 
@@ -19,6 +21,21 @@ ReadAid.ai is an AI-powered accessibility tool that transforms web content into 
   - Blue highlighting for key terms
 - ⚡ **Real-time Processing**: Fast content generation with streaming support
 - 🎯 **Simple Interface**: Clean, distraction-free design built with Streamlit
+
+### ✨ NEW in Version 2.0
+
+- 📚 **Reading Level Customization**: Choose Beginner, Intermediate, or Advanced complexity
+- 📏 **Content Length Options**: Select Brief summaries, Moderate, or Detailed explanations
+- 🔤 **Font Size Adjustment**: Customize text size from 12px to 24px for comfortable reading
+- 🎨 **Background Color Selection**: Choose from 4 eye-friendly color schemes
+- 📖 **Content History**: Automatically saves your last 5 searches for easy reference
+- ⭐ **Bookmark System**: Save and organize your favorite topics
+- 💾 **Multiple Export Formats**: Download as HTML or plain text
+- 📊 **Reading Statistics**: Track your queries, bookmarks, and session time
+- 🚀 **Quick Access**: Pre-selected popular topics and recent history
+- ℹ️ **Enhanced Help**: Comprehensive in-app guidance for all features
+
+See [FEATURES.md](FEATURES.md) for detailed feature documentation.
 
 ## 🚀 Quick Start
 
