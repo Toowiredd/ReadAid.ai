@@ -9,24 +9,14 @@ Author: ReadAid.ai Team
 License: MIT
 """
 
+from __future__ import annotations
+
 import streamlit as st
-import openai
 import os
-import time
 import datetime
-import json
 import logging
-from typing import Optional
-from langchain.prompts import ChatPromptTemplate
-from langchain.llms import OpenAI
+from typing import Optional, Tuple, List
 from langchain.chat_models import ChatOpenAI
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chains import LLMChain
-from langchain.chains import SimpleSequentialChain
-from langchain.memory import ConversationSummaryBufferMemory
-from langchain.chains import ConversationChain
-from langchain.output_parsers import ResponseSchema
-from langchain.output_parsers import StructuredOutputParser
 from langflow.load import run_flow_from_json
 
 # Configure logging
@@ -39,12 +29,12 @@ logger = logging.getLogger(__name__)
 
 # ==================== Configuration ====================
 
-def validate_environment() -> tuple[bool, list[str]]:
+def validate_environment() -> Tuple[bool, List[str]]:
     """
     Validate that required environment variables are set.
     
     Returns:
-        tuple: (is_valid, list of missing variables)
+        Tuple[bool, List[str]]: (is_valid, list of missing variables)
     """
     required_vars = ["OPENAI_API_KEY", "TAVILY_API_KEY"]
     missing_vars = [var for var in required_vars if not os.getenv(var)]

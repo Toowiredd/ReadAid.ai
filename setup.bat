@@ -2,6 +2,10 @@
 REM ReadAid.ai Setup Script for Windows
 REM This script helps you set up ReadAid.ai quickly and easily
 
+REM Placeholder values (must match .env.example)
+set OPENAI_PLACEHOLDER=your_openai_api_key_here
+set TAVILY_PLACEHOLDER=your_tavily_api_key_here
+
 echo ================================================
 echo    Welcome to ReadAid.ai Setup!
 echo ================================================
@@ -82,13 +86,13 @@ echo.
 
 REM Check for API keys
 echo Checking API keys...
-findstr /C:"your_openai_api_key_here" .env >nul 2>&1
+findstr /C:"%OPENAI_PLACEHOLDER%" .env >nul 2>&1
 if not errorlevel 1 (
     echo [WARNING] OpenAI API key not set in .env file
     echo   Get your key at: https://platform.openai.com/api-keys
 )
 
-findstr /C:"your_tavily_api_key_here" .env >nul 2>&1
+findstr /C:"%TAVILY_PLACEHOLDER%" .env >nul 2>&1
 if not errorlevel 1 (
     echo [WARNING] Tavily API key not set in .env file
     echo   Get your key at: https://tavily.com/

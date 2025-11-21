@@ -5,6 +5,10 @@
 
 set -e  # Exit on error
 
+# Placeholder values (must match .env.example)
+OPENAI_PLACEHOLDER="your_openai_api_key_here"
+TAVILY_PLACEHOLDER="your_tavily_api_key_here"
+
 echo "================================================"
 echo "   Welcome to ReadAid.ai Setup!"
 echo "================================================"
@@ -103,12 +107,12 @@ fi
 # Check for API keys
 echo ""
 echo "Checking API keys..."
-if grep -q "your_openai_api_key_here" .env 2>/dev/null; then
+if grep -q "$OPENAI_PLACEHOLDER" .env 2>/dev/null; then
     print_warning "OpenAI API key not set in .env file"
     echo "  Get your key at: https://platform.openai.com/api-keys"
 fi
 
-if grep -q "your_tavily_api_key_here" .env 2>/dev/null; then
+if grep -q "$TAVILY_PLACEHOLDER" .env 2>/dev/null; then
     print_warning "Tavily API key not set in .env file"
     echo "  Get your key at: https://tavily.com/"
 fi
