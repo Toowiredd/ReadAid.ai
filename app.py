@@ -15,11 +15,11 @@ import streamlit as st
 import os
 import datetime
 import logging
-import json
+import re
 from typing import Optional, Tuple, List, Dict
+from html import unescape as html_unescape
 from langchain.chat_models import ChatOpenAI
 from langflow.load import run_flow_from_json
-from pathlib import Path
 
 # Configure logging
 logging.basicConfig(
@@ -403,10 +403,9 @@ def export_to_formats(content: str, query: str) -> Dict[str, bytes]:
     """
     exports = {}
     
-    # Plain text version (strip HTML tags)
-    import re
+    # Plain text version (strip HTML tags and decode HTML entities)
     plain_text = re.sub('<[^<]+?>', '', content)
-    plain_text = plain_text.replace('&nbsp;', ' ').replace('&amp;', '&')
+    plain_text = html_unescape(plain_text)
     exports['txt'] = plain_text.encode('utf-8')
     
     # HTML version (already have it)
@@ -497,17 +496,29 @@ with tab2:
         "Explain the water cycle"
     ]
     
+    # Build recent history list
+    recent_history_list = [f"📜 {h['query']}" for h in reversed(st.session_state.history[-5:])] if st.session_state.history else []
+    
     selected_topic = st.selectbox(
         "Choose a popular topic or use your recent history:",
-        options=["-- Select --"] + popular_topics + [f"📜 {h['query']}" for h in reversed(st.session_state.history[-5:])]
+        options=["-- Select --"] + popular_topics + recent_history_list
     )
     
     if st.button("Load Selected Topic", type="secondary"):
         if selected_topic != "-- Select --":
-            users_input = selected_topic.replace("📜 ", "")
-            button_pressed = True
+            # Store in session state for the main generation logic
+            st.session_state.quick_topic = selected_topic.replace("📜 ", "")
+            st.rerun()
         else:
             st.warning("Please select a topic first")
+
+# Check if there's a quick topic to load
+if 'quick_topic' in st.session_state:
+    users_input = st.session_state.quick_topic
+    del st.session_state.quick_topic
+    button_pressed = True
+else:
+    button_pressed = False
 
 # Process generation
 if button_pressed and users_input:
